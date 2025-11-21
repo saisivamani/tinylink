@@ -1,40 +1,149 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+TinyLink — URL Shortener (Next.js + Neon + Tailwind)
 
-## Getting Started
+A minimal, production-ready URL shortener similar to Bit.ly.
+Create short links, track clicks, view stats, and manage everything from a clean dashboard.
 
-First, run the development server:
+Live Demo → https://tinylink-ashy.vercel.app/
 
-```bash
+GitHub → https://github.com/saisivamani/tinylink
+
+🚀 Features
+🔗 URL Shortening
+
+Create short links from long URLs
+
+Optional custom shortcode
+
+Validates URL before saving
+
+Rejects duplicate custom codes (409)
+
+📈 Click Tracking
+
+/code stats page
+
+Shows:
+
+Total clicks
+
+Created date
+
+Last clicked
+
+Redirect URL
+
+🔁 Redirect
+
+Visiting /abc123 → redirects via 302
+
+Each visit increments click count
+
+Updates last clicked timestamp
+
+Redirect stops after deletion
+
+🗑 Delete Link
+
+Delete any existing link
+
+Deleted shortcodes return 404
+
+🏥 Healthcheck
+
+/healthz endpoint returns:
+
+{ "ok": true, "version": "1.0" }
+
+🖥 UI / UX
+
+Built with Tailwind CSS
+
+Dashboard
+
+Form validation
+
+Functional table (copy, view, delete)
+
+Responsive layout (mobile → desktop)
+
+🧱 Tech Stack
+
+Next.js 16 (Pages Router)
+
+Neon Postgres
+
+Tailwind CSS
+
+Vercel Hosting
+
+🗄 Database Schema
+CREATE TABLE links (
+  code VARCHAR(8) PRIMARY KEY,
+  target_url TEXT NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT now(),
+  total_clicks BIGINT DEFAULT 0,
+  last_clicked TIMESTAMPTZ
+);
+
+⚙️ Environment Variables
+
+Create .env.local:
+
+DATABASE_URL=postgresql://<user>:<password>@<host>/<db>?sslmode=require
+
+
+(Don’t expose your actual credentials.)
+
+Also include .env.example:
+
+DATABASE_URL=
+
+▶️ Running the Project Locally
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Visit:
+http://localhost:3000
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+🌍 Deployment
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+Deployed on Vercel with Neon Postgres.
+Hot reload, serverless APIs, instant DB.
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+📹 Video Walkthrough
 
-## Learn More
+Required in submission:
 
-To learn more about Next.js, take a look at the following resources:
+Dashboard overview
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+Creating a link
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Redirect working
 
-## Deploy on Vercel
+Stats page
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Delete link
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+Health endpoint
+
+Code walkthrough
+
+/lib/db.js
+
+/api/links.js
+
+/api/links/[code].js
+
+/pages/[code].js
+
+/pages/code/[code].js
+
+🤖 AI Usage
+
+This project was built with assistance from ChatGPT.
+Full transcript included in submission.
+
+👤 Author
+
+Sivamani Vanapalli
